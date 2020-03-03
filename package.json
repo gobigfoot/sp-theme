@@ -10,7 +10,7 @@
     "build": "gulp bundle",
     "clean": "gulp clean",
     "test": "gulp test",
-    "preversion": "node ./tools/pre-version.js",
+    "preversion": "node ./tools/pre-version.js && git add config/package-solution.json",
     "postversion": "gulp dist"
   },
   "dependencies": {
