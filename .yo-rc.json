@@ -1,0 +1,25 @@
+{
+  "@pnp/generator-spfx": {
+    "framework": "none",
+    "pnpFramework": "none.plus",
+    "pnp-libraries": [
+      "rush@3.7"
+    ],
+    "pnp-ci": "no-devops",
+    "pnp-vetting": [],
+    "spfxenv": "spo",
+    "pnp-testing": []
+  },
+  "@microsoft/generator-sharepoint": {
+    "environment": "spo",
+    "framework": "none",
+    "isCreatingSolution": true,
+    "version": "1.10.0",
+    "libraryName": "sp-theme",
+    "libraryId": "b4a0d5a6-f2d1-440f-824a-b2a12deaae34",
+    "packageManager": "npm",
+    "isDomainIsolated": false,
+    "componentType": "extension",
+    "extensionType": "ApplicationCustomizer"
+  }
+}
