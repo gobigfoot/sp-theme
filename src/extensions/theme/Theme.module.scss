@@ -1,0 +1,8 @@
+.themeContainer {
+  display: none;
+}
+
+// Making the styles global
+:global {
+  @import "./styles/lists.module.scss";
+}

@@ -1,13 +1,8 @@
 import { override } from '@microsoft/decorators';
-import { Log } from '@microsoft/sp-core-library';
 import {
-  BaseApplicationCustomizer
+  BaseApplicationCustomizer, PlaceholderProvider, PlaceholderName, PlaceholderContent
 } from '@microsoft/sp-application-base';
-import { Dialog } from '@microsoft/sp-dialog';
-
-import * as strings from 'ThemeApplicationCustomizerStrings';
-
-const LOG_SOURCE: string = 'ThemeApplicationCustomizer';
+import styles from './Theme.module.scss';
 
 /**
  * If your command set uses the ClientSideComponentProperties JSON input,
@@ -23,17 +18,21 @@ export interface IThemeApplicationCustomizerProperties {
 export default class ThemeApplicationCustomizer
   extends BaseApplicationCustomizer<IThemeApplicationCustomizerProperties> {
 
+  private _topPlaceholder: PlaceholderContent | undefined;
+
   @override
   public onInit(): Promise<void> {
-    Log.info(LOG_SOURCE, `Initialized ${strings.Title}`);
-
-    let message: string = this.properties.testMessage;
-    if (!message) {
-      message = '(No properties were provided.)';
-    }
-
-    Dialog.alert(`Hello from ${strings.Title}:\n\n${message}`);
-
     return Promise.resolve();
+  }
+
+  @override
+  public onPlaceholdersChanged(placeholderProvider: PlaceholderProvider): void {
+    // Only render once
+    if (!this._topPlaceholder) {
+      this._topPlaceholder = placeholderProvider.tryCreateContent(PlaceholderName.Top);
+      const themeElement = document.createElement("div");
+      themeElement.classList.add(styles.themeContainer);
+      this._topPlaceholder.domElement.appendChild(themeElement);
+    }
   }
 }

@@ -1,0 +1,30 @@
+/* Adding theme color as background to group headers */
+%themeColoredHeadings {
+  background-color: "[theme:themePrimary, default:#ffc074]" !important;
+  color: "[theme:white, default:white]" !important;
+
+  &:hover {
+    background-color: "[theme:themeSecondary, default:#ffc074]" !important;
+  }
+
+  .ms-GroupHeader-expand {
+    color: "[theme:white, default:white]" !important;
+
+    &:hover {
+      background-color: "[theme:themeTertiary, default:#ffc074]" !important;
+    }
+  }
+}
+
+.ms-GroupHeader-title {
+  font-size: 16px !important;
+}
+
+.ms-GroupHeader {
+  @extend %themeColoredHeadings;
+}
+
+/* Use this method to isolat only certain headings */
+// .ms-GroupHeader[aria-label^="GroupHeading : "] {
+//   @extend %themeColoredHeadings;
+// }

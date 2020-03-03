@@ -1,29 +1,30 @@
-'use strict';
+"use strict";
 
 // check if gulp dist was called
-if (process.argv.indexOf('dist') !== -1) {
-    // add ship options to command call
-    process.argv.push('--ship');
+if (process.argv.indexOf("dist") !== -1) {
+  // add ship options to command call
+  process.argv.push("--ship");
 }
 
-const path = require('path');
-const gulp = require('gulp');
-const build = require('@microsoft/sp-build-web');
-const gulpSequence = require('gulp-sequence');
+const path = require("path");
+const gulp = require("gulp");
+const build = require("@microsoft/sp-build-web");
+const gulpSequence = require("gulp-sequence");
 
-build.addSuppression(`Warning - [sass] The local CSS class 'ms-Grid' is not camelCase and will not be type-safe.`);
+build.addSuppression(
+  /Warning - \[sass\] The local CSS class '[\w-]+' is not camelCase and will not be type-safe\./
+);
+build.addSuppression(
+  "Warning - Admins can make this solution available to all sites immediately, but the solution also contains feature.xml elements for provisioning. Feature.xml elements are not automatically applied unless the solution is explicitly installed on a site."
+);
 
 // Create clean distrubution package
-gulp.task('dist', gulpSequence('clean', 'bundle', 'package-solution'));
+gulp.task("dist", gulpSequence("clean", "bundle", "package-solution"));
 // Create clean development package
-gulp.task('dev', gulpSequence('clean', 'bundle', 'package-solution'));
-
-
-
+gulp.task("dev", gulpSequence("clean", "bundle", "package-solution"));
 
 /**
  * Custom Framework Specific gulp tasks
  */
-
 
 build.initialize(gulp);

@@ -25,7 +25,7 @@
       "name": "Hosted workbench",
       "type": "chrome",
       "request": "launch",
-      "url": "https://enter-your-SharePoint-site/_layouts/workbench.aspx",
+      "url": "https://enter-your-SharePoint-site?loadSPFX=true&debugManifestsFile=https://localhost:4321/temp/manifests.js&customActions={\"a6149107-5828-497c-9883-d91b87f4c26d\":{\"location\":\"ClientSideExtension.ApplicationCustomizer\"}}",
       "webRoot": "${workspaceRoot}",
       "sourceMaps": true,
       "sourceMapPathOverrides": {
